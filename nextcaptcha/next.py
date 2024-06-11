@@ -1,9 +1,11 @@
 import logging
 import time
-
+import coloredlogs
 import requests
 
-logging.basicConfig(level=logging.INFO)
+
+logger = logging.getLogger(__name__)
+coloredlogs.install(fmt='%(asctime)s - %(levelname)s - %(message)s')
 
 RECAPTCHAV2_TYPE = "RecaptchaV2TaskProxyless"
 RECAPTCHAV2_ENTERPRISE_TYPE = "RecaptchaV2EnterpriseTaskProxyless"
