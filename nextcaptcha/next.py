@@ -95,7 +95,7 @@ class ApiClient:
 class NextCaptchaAPI:
     def __init__(self, client_key: str, solft_id: str = "", callback_url: str = "", open_log: bool = True) -> None:
         logging.info(
-            f"{Fore.RESET}({Fore.GREEN}+{Fore.RESET}) {Fore.WHITE}Initiliazed Solver with [{Fore.BLUE}{client_key[:5]}*************{client_key[15:]}{Fore.RESET}")
+            f"{Fore.RESET}({Fore.GREEN}+{Fore.RESET}) {Fore.WHITE}Initiliazed Solver with {Fore.RESET}[{Fore.BLUE}{client_key[:5]}*************{client_key[10:]}{Fore.RESET}]")
         self.api = ApiClient(client_key=client_key, solft_id=solft_id, callback_url=callback_url, open_log=open_log)
 
     def recaptchav2(self, website_url: str, website_key: str, recaptcha_data_s_value: str = "",
