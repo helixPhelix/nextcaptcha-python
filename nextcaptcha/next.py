@@ -2,10 +2,10 @@ import logging
 import time
 import coloredlogs
 import requests
-
+from colorama import Fore
 
 logger = logging.getLogger(__name__)
-coloredlogs.install(fmt='%(asctime)s - %(levelname)s - %(message)s')
+coloredlogs.install(fmt=f'{Fore.LIGHTBLACK_EX}%(asctime)s,%(msecs)03d{Fore.RESET} %(message)s')
 
 RECAPTCHAV2_TYPE = "RecaptchaV2TaskProxyless"
 RECAPTCHAV2_ENTERPRISE_TYPE = "RecaptchaV2EnterpriseTaskProxyless"
