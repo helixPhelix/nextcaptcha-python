@@ -61,13 +61,13 @@ class ApiClient:
         resp = self.session.post(url=self.HOST + "/createTask", json=data)
         if resp.status_code != 200:
             if self.open_log:
-                logging.error(f"Error: {resp.status_code} {resp.text}")
-                logging.error(f"Data: {data}")
+                logging.error(f"{Fore.RESET}({Fore.RED}-{Fore.RESET}) {Fore.WHITE}An Error Occured: {Fore.RED}{resp.text}.")
+                logging.error(f"{Fore.RESET}({Fore.RED}-{Fore.RESET}) {Fore.WHITE}Data: {Fore.RED}{data}")
             return resp.json()
         resp = resp.json()
         task_id = resp.get("taskId")
         if self.open_log:
-            logging.info(f"Task {task_id} created {resp}")
+            logging.info(f"{Fore.RESET}({Fore.GREEN}+{Fore.RESET}) {Fore.WHITE}Task was successfully created with ID: {Fore.CYAN}{task_id}.")
 
         start_time = time.time()
         while True:
@@ -78,16 +78,16 @@ class ApiClient:
                                      json={"clientKey": self.client_key, "taskId": task_id})
             if resp.status_code != 200:
                 if self.open_log:
-                    logging.error(f"Error: {resp.status_code} {resp.text}")
+                    logging.error(f"{Fore.RESET}({Fore.RED}-{Fore.RESET}) {Fore.WHITE}An Error Occured: {Fore.RED}{resp.text}.")
                 return resp.json()
             status = resp.json().get("status")
             if self.open_log:
-                logging.info(f"Task status: {status}")
+                logging.error(f"{Fore.RESET}({Fore.YELLOW}~{Fore.RESET}) {Fore.WHITE}Task {task_id} is processing.")
             if status == READY_STATUS:
-                logging.info(f"Task {task_id} ready {resp.json()}")
+                logging.info(f"{Fore.RESET}({Fore.GREEN}+{Fore.RESET}) {Fore.WHITE}Task {task_id} is ready.")
                 return resp.json()
             if status == FAILED_STATUS:
-                logging.error(f"Task {task_id} failed {resp.json()}")
+                logging.error(f"{Fore.RESET}({Fore.RED}-{Fore.RESET}) {Fore.WHITE}Task {task_id} has failed: {Fore.RED}{resp.json()}.")
                 return resp.json()
             time.sleep(1)
 
