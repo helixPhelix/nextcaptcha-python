@@ -45,10 +45,10 @@ class ApiClient:
         resp = self.session.post(url=self.HOST + "/getBalance", json={"clientKey": self.client_key})
         if resp.status_code != 200:
             if self.open_log:
-                logging.error(f"Error: {resp.status_code} {resp.text}")
+                logging.error(f"({Fore.RED}-{Fore.RESET}) {Fore.WHITE}Invalid API Key.")
             return resp.json()
         if self.open_log:
-            logging.info(f"Balance: {resp.json().get('balance')}")
+            logging.info(f"({Fore.GREEN}+{Fore.RESET}) {Fore.WHITE}Key Balance: [{Fore.GREEN}{resp.json().get('balance')}]")
         return resp.json().get("balance")
 
     def _send(self, task: dict) -> dict:
