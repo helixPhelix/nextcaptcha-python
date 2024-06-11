@@ -48,7 +48,7 @@ class ApiClient:
                 logging.error(f"{Fore.RESET}({Fore.RED}-{Fore.RESET}) {Fore.WHITE}Invalid API Key.")
             return resp.json()
         if self.open_log:
-            logging.info(f"{Fore.RESET}({Fore.GREEN}+{Fore.RESET}) {Fore.WHITE}Key Balance: [${Fore.GREEN}{resp.json().get('balance')}]")
+            logging.info(f"{Fore.RESET}({Fore.GREEN}+{Fore.RESET}) {Fore.WHITE}Key Balance: [{Fore.GREEN}{resp.json().get('balance')}${Fore.RESET}]")
         return resp.json().get("balance")
 
     def _send(self, task: dict) -> dict:
