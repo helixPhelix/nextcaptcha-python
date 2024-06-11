@@ -48,7 +48,7 @@ class ApiClient:
                 logging.error(f"{Fore.RESET}({Fore.RED}-{Fore.RESET}) {Fore.WHITE}Invalid API Key.")
             return resp.json()
         if self.open_log:
-            logging.info(f"{Fore.RESET}({Fore.GREEN}+{Fore.RESET}) {Fore.WHITE}Key Balance: [{Fore.GREEN}{resp.json().get('balance')}]")
+            logging.info(f"{Fore.RESET}({Fore.GREEN}+{Fore.RESET}) {Fore.WHITE}Key Balance: [${Fore.GREEN}{resp.json().get('balance')}]")
         return resp.json().get("balance")
 
     def _send(self, task: dict) -> dict:
@@ -95,7 +95,7 @@ class ApiClient:
 class NextCaptchaAPI:
     def __init__(self, client_key: str, solft_id: str = "", callback_url: str = "", open_log: bool = True) -> None:
         logging.info(
-            f"{Fore.RESET}({Fore.GREEN}+{Fore.RESET}) {Fore.WHITE}Initiliazed Solver with {Fore.RESET}[{Fore.BLUE}{client_key[:5]}*************{client_key[10:]}{Fore.RESET}]")
+            f"{Fore.RESET}({Fore.GREEN}+{Fore.RESET}) {Fore.WHITE}Initiliazed Solver with {Fore.RESET}[{Fore.BLUE}{client_key[:5]}*************{client_key[20:]}{Fore.RESET}]")
         self.api = ApiClient(client_key=client_key, solft_id=solft_id, callback_url=callback_url, open_log=open_log)
 
     def recaptchav2(self, website_url: str, website_key: str, recaptcha_data_s_value: str = "",
