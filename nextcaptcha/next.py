@@ -3,7 +3,6 @@ import time
 import coloredlogs
 import requests
 import base64
-import httpx
 from colorama import Fore
 
 logger = logging.getLogger(__name__)
